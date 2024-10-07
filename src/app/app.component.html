@@ -4,8 +4,26 @@
   <button (click)="addFriend()">Add friend</button>
 </div>
 <div class="favorite">
-  <p>My favorite person is: {{ favorite }}</p>
+  <p>My favorite people are: {{getFavorites()}} </p>
+  
 </div>
 <div class="people">
-  <!-- Add your people component here -->
+  <!-- 
+    Parent component uses the child component (PeopleComponent) using the tag defined in the component.
+    [person] uses property binding [] to pass data down to the child component. 
+    *ngFor="" standard for loop in Angular.
+    
+    (selected)="setFavoriteFriend($event)" = event binding.
+    Listens for a custom event called selected, which is emitted by the child component. 
+    When the selected event is emitted from PeopleComponent, the parent component will execute the method setFavoriteFriend($event).
+    $event: This is the value passed by the child component when it emits the selected event. 
+  -->
+  <app-people
+    *ngFor="let person of people"
+      [person]="person"
+      [favorite]="favorites.includes(person)"
+      
+      (selected)="addFavoriteFriend($event)"
+      (remove)="removeFavoriteFriend($event)"
+    ></app-people>
 </div>

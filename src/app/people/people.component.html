@@ -1,0 +1,14 @@
+<!-- 
+    (click)="favorite()" = onClick(favorite)
+    
+
+-->
+<p> {{ person }}</p>
+
+<ng-container *ngIf="!favorite">
+    <button (click)="selected.emit(person)">Add to favorites</button>
+</ng-container>
+
+<ng-container *ngIf="favorite">
+    <button (click)="remove.emit(person)">Remove from favorites</button>
+</ng-container>
